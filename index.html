@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carta para Kim</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #ffb6c1, #ffc0cb, #ffd1dc);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* CONTENEDOR RESPONSIVE 9:16 */
+.phone {
+    aspect-ratio: 9 / 16;
+    height: min(90vh, 720px);
+    max-width: 420px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CONTENEDOR GENERAL */
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(120px);
+    z-index: 2;
+}
+
+/* SOBRE */
+.envelope {
+    width: 260px;
+    height: 160px;
+    position: relative;
+    background: #e91e63;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    transition: transform 0.8s ease;
+}
+
+/* AL ABRIR */
+.open .envelope {
+    transform: translateY(80px);
+}
+
+/* TAPA */
+.envelope::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #f06292;
+    clip-path: polygon(0 0, 100% 0, 50% 60%);
+    transform-origin: top;
+    transition: transform 0.9s ease;
+    z-index: 3;
+}
+
+/* CORAZÓN */
+.heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 22px;
+    height: 22px;
+    background: red;
+    z-index: 4;
+    animation: pulse 1.4s infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: red;
+    border-radius: 50%;
+}
+
+.heart::before { top: -11px; left: 0; }
+.heart::after { left: -11px; top: 0; }
+
+/* TEXTO SOBRE */
+.envelope-text {
+    position: absolute;
+    left: 16px;
+    bottom: 14px;
+    color: #fff;
+    font-size: 13px;
+}
+
+/* CARTA */
+.letter {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    max-height: 60vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    opacity: 0;
+    transition: all 1s ease;
+    z-index: 10;
+    text-align: center;
+}
+
+
+.letter h2 {
+    margin-top: 0;
+    font-size: 17px;
+}
+
+.letter p {
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+
+/* ESTADO ABIERTO */
+.open .envelope::before {
+    transform: rotateX(180deg);
+}
+
+.open .letter {
+    top: 50%;
+    transform: translate(-50%, calc(-50% - 60px));
+    opacity: 1;
+}
+
+
+/* BOTÓN */
+button {
+    margin-top: 30px;
+    padding: 12px 26px;
+    border: none;
+    border-radius: 25px;
+    background: #e91e63;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* PARTÍCULAS */
+.floating-heart,
+.floating-sunflower {
+    position: absolute;
+    bottom: -40px;
+    animation: floatUp linear forwards;
+    pointer-events: none;
+}
+
+.floating-heart { font-size: 22px; }
+.floating-sunflower { font-size: 26px; }
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-720px) scale(1.4) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(1) rotate(45deg); }
+    50% { transform: translate(-50%, -50%) scale(1.2) rotate(45deg); }
+    100% { transform: translate(-50%, -50%) scale(1) rotate(45deg); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="phone" id="phone">
+    <div class="container" id="container">
+
+        <div class="envelope" onclick="openEnvelope()">
+            <div class="heart"></div>
+
+            <div class="envelope-text">
+                De:<br><strong>Jose G.M</strong><br><br>
+                Para:<br><strong>Kim</strong>
+            </div>
+
+            <div class="letter">
+                <h2>💌 Kim 💜</h2>
+                <p>
+                    Solo quiero que sepas algo con claridad y desde el corazón: te apoyo al 100% en tu fe y en el camino que has decidido seguir. Nunca he querido cambiarte ni poner nada por encima de lo que para ti es importante. Al contrario, lo respeto y lo cuido.
+                    <br><br>
+                    Me gustas de verdad. Te amo con todo mi corazón, de una forma limpia, tranquila y sincera. Eres dulce, alegre, única… incluso cuando te enojas un poquito. Y así, tal como eres, me encantas.
+                    <br><br>
+                    No te escribo para apresurarte ni para ponerte presión. Esperaré el tiempo que tú me digas, porque cuando alguien importa, se sabe esperar. Yo estoy aquí para apoyarte, cuidarte y caminar a tu lado si algún día decides hacerlo conmigo.
+                    <br><br>
+                    Con cariño sincero,<br>
+                    <strong>José</strong>
+                </p>
+            </div>
+        </div>
+
+        <button onclick="openEnvelope()">💖 Toca para abrir</button>
+    </div>
+</div>
+
+<script>
+const container = document.getElementById('container');
+const phone = document.getElementById('phone');
+
+function openEnvelope() {
+    container.classList.add('open');
+
+    for (let i = 0; i < 30; i++) {
+        setTimeout(createHeart, i * 120);
+    }
+    for (let i = 0; i < 20; i++) {
+        setTimeout(createSunflower, i * 180);
+    }
+}
+
+function createHeart() {
+    const el = document.createElement('div');
+    el.className = 'floating-heart';
+    el.innerHTML = '❤️';
+    el.style.left = Math.random() * 100 + '%';
+    el.style.animationDuration = (3 + Math.random() * 2) + 's';
+    phone.appendChild(el);
+    setTimeout(() => el.remove(), 5000);
+}
+
+function createSunflower() {
+    const el = document.createElement('div');
+    el.className = 'floating-sunflower';
+    el.innerHTML = '🌻';
+    el.style.left = Math.random() * 100 + '%';
+    el.style.animationDuration = (4 + Math.random() * 2) + 's';
+    phone.appendChild(el);
+    setTimeout(() => el.remove(), 6000);
+}
+</script>
+
+</body>
+</html>
