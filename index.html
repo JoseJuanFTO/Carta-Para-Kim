@@ -167,6 +167,7 @@ button {
 
 /* PARTÍCULAS */
 .floating-heart,
+.floating-crown,
 .floating-sunflower {
     position: absolute;
     bottom: -40px;
@@ -174,6 +175,7 @@ button {
     pointer-events: none;
 }
 
+.floating-crown  { font-size: 24px; }
 .floating-heart { font-size: 22px; }
 .floating-sunflower { font-size: 26px; }
 
@@ -237,6 +239,20 @@ function openEnvelope() {
     for (let i = 0; i < 20; i++) {
         setTimeout(createSunflower, i * 180);
     }
+    for (let i = 0; i < 15; i++) {
+    setTimeout(createCrown, i * 200);
+}
+
+}
+
+function createCrown() {
+    const el = document.createElement('div');
+    el.className = 'floating-crown';
+    el.innerHTML = '👑';
+    el.style.left = Math.random() * 100 + '%';
+    el.style.animationDuration = (4 + Math.random() * 2) + 's';
+    phone.appendChild(el);
+    setTimeout(() => el.remove(), 6000);
 }
 
 function createHeart() {
